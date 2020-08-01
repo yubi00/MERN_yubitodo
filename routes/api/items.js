@@ -1,5 +1,6 @@
 const express = require('express')
 const Router = express.Router()
+const auth = require('../../middleware/auth')
 
 //Item Model
 const Item = require('../../models/Item')
@@ -16,7 +17,7 @@ Router.get('/', (req, res) => {
 //@route POST api/items
 //@desc Create a Item
 //@access public
-Router.post('/', (req, res) => {
+Router.post('/', auth, (req, res) => {
     const newItem = new Item({
         name: req.body.name
     })
@@ -28,7 +29,7 @@ Router.post('/', (req, res) => {
 //@route DELETE api/items/:id
 //@desc Delete a item
 //@access public
-Router.delete('/:id', (req, res) => {
+Router.delete('/:id', auth,  (req, res) => {
     Item.findById(req.params.id)
         .then(item => item.remove().then(() => res.json({success: true})))
         .catch(err => res.status(404).json({ success: false }))
