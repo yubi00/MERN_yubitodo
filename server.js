@@ -2,14 +2,14 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const app = express()
- require('dotenv').config({ path: './config/dev.env'})
+require('dotenv').config({ path: './config/dev.env'})
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 //connect to mongo
 mongoose
-    .connect(process.env.MONGO_URI, {useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true})
+    .connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
     .then(() => console.log('Mongodb connected...'))
     .catch(err => console.log(err))
 
