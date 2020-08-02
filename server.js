@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}))
 
 //connect to mongo
 mongoose
-    .connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+    .connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
     .then(() => console.log('Mongodb connected...'))
     .catch(err => console.log(err))
 
