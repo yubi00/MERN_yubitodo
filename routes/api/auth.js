@@ -2,7 +2,6 @@ const express = require('express')
 const Router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const config = require('config')
 const auth = require('../../middleware/auth')
 
 //Item Model
@@ -35,7 +34,7 @@ Router.post('/', (req, res) => {
                     })
                     jwt.sign(
                         { id: user._id },
-                        config.get('JWT_SECRET'),
+                        process.env.JWT_SECRET,
                         { expiresIn: 360000 },
                         (err, token) => {
                             if(err) throw err

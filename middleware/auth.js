@@ -11,10 +11,9 @@ const auth = (req, res, next) => {
         })
     }
     
-    try {
-        
+    try {    
         //verify token
-        const decoded = jwt.verify(token, config.get('JWT_SECRET'))
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         //dd user from payload
         req.user = decoded

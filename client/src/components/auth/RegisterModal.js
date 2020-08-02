@@ -79,7 +79,9 @@ class RegisterModal extends Component {
  render() {
      return (
          <div>
-            <NavLink onClick={this.toggle} href="#">Register</NavLink>
+            <NavLink onClick={this.toggle} href="#">
+                Register
+            </NavLink>
              <Modal
                 isOpen={this.state.modal}
                 toggle={this.toggle}
