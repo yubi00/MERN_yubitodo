@@ -18,12 +18,18 @@ Router.get('/', (req, res) => {
 //@desc Create a Item
 //@access public
 Router.post('/', auth, (req, res) => {
+    if( !req.body.name ) {
+        res.status(400).json({
+            message: "Item name cannot be empty"
+        })
+    }
     const newItem = new Item({
         name: req.body.name
     })
 
     newItem.save()
         .then(item => res.json(item))
+        .catch(err => res.status(400).json({ message: "failed to save new item" }))
 })
 
 //@route DELETE api/items/:id
